@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrz.mapper.MenuInfoMapper">
+    <resultMap id="menuInfoMap" type="com.mrz.dto.MenuInfoDto">
+        <id column="menuid" property="id"></id>
+        <result column="menuname" property="name"></result>
+        <result column="menupath" property="url"></result>
+        <result column="menuicon" property="icon"></result>
+        <result column="parentid" property="pid"></result>
+        <result column="checked" property="checked"></result>
+        <collection property="children" ofType="com.mrz.dto.MenuInfoDto">
+            <id column="cid" property="id"></id>
+            <result column="cname" property="name"></result>
+            <result column="cpath" property="url"></result>
+            <result column="cicon" property="icon"></result>
+            <result column="cpid" property="pid"></result>
+            <result column="checked" property="checked"></result>
+        </collection>
+    </resultMap>
+    <resultMap id="menuMap" type="com.mrz.dto.MenuDto">
+        <id column="menuid" property="id"></id>
+        <result column="menuname" property="menuname"></result>
+        <result column="parentid" property="pid"></result>
+        <collection property="children" ofType="com.mrz.dto.MenuDto">
+            <id column="cid" property="id"></id>
+            <result column="name" property="menuname"></result>
+            <result column="aid" property="pid"></result>
+        </collection>
+    </resultMap>
+
+<select id="getAllMenu"  parameterType="int" resultMap="menuMap">
+<!--select tb1.*,rm.status checked from (SELECT m1.*,m2.menuid cid,m2.menuname cname,
+m2.menupath cpath,m2.menuicon cicon,m2.parentid cpid
+from menuinfo m1,menuinfo m2  where m1.menuid = m2.parentid) tb1
+left join role_menu rm on tb1.menuid = rm.menuid where roleid = #{roleId}-->
+    <!--select m.menuid id,m.menuname,m.parentid pid from menuinfo m left join role_menu rm on rm.status=1 and rm.menuid=m.menuid where rm.roleid=#{roleid}-->
+    SELECT tbl.menuid,tbl.menuname,tbl.parentid,m1.menuid cid,m1.menuname name,m1.parentid aid FROM (SELECT m.menuid,m.menuname,m.parentid
+    from menuinfo m LEFT JOIN role_menu rm on rm.`status`=1 AND rm.menuid=m.menuid where rm.roleid=#{roleid}) tbl
+    LEFT JOIN menuinfo m1 ON m1.parentid=tbl.menuid
+</select>
+
+    <select id="getAllMenuAll" resultMap="menuInfoMap" >
+    SELECT m1.*,m2.menuid cid,m2.menuname cname,
+    m2.menupath cpath,m2.menuicon cicon,m2.parentid cpid
+    from menuinfo m1,menuinfo m2  where m1.menuid = m2.parentid
+</select>
+
+</mapper>

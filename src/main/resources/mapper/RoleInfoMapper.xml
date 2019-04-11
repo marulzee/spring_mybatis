@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mrz.mapper.RoleInfoMapper">
+    <select id="getRoleByUserId" parameterType="com.mrz.vo.UserIdVo" resultType="com.mrz.dto.RoleInfoDto">
+      SELECT r.roleid,r.rolename,u.userid from roleinfo r LEFT JOIN
+      user_role ur on r.roleid=ur.roleid and ur.userid=#{userid}
+      LEFT JOIN userinfo u on ur.userid=u.userid
+      and u.`status`=1
+    </select>
+
+    <select id="getRoleInfo" parameterType="com.mrz.vo.RoleInfoVo" resultType="com.mrz.pojo.RoleInfo">
+       SELECT * from roleinfo where status=1
+       <if test="roleInfo.roleid !=null and roleInfo.roleid !=0">
+           and roleid=#{roleInfo.roleid}
+       </if>
+       <if test="roleInfo.rolename !=null and roleInfo.rolename !=''">
+           and rolename=#{roleInfo.rolename}
+       </if>
+    </select>
+    <!--批量删除-->
+    <update id="delAllById" parameterType="com.mrz.vo.RoleInfoVo">
+        update roleInfo set status=0 where roleid in
+        <foreach collection="roleid" item="roleid" index="index" open="(" close=")" separator=",">
+            #{roleid}
+        </foreach>
+    </update>
+    <!--删除-->
+    <update id="delRoleInfo" parameterType="com.mrz.vo.RoleInfoVo">
+        update roleinfo set status=0 where roleid=#{roleInfo.roleid}
+    </update>
+    <!--添加-->
+    <insert id="addRoleInfo" parameterType="com.mrz.vo.RoleInfoVo">
+        insert into roleinfo(rolename) values(#{roleInfo.rolename})
+    </insert>
+    <!--修改-->
+    <update id="updateRoleInfo" parameterType="com.mrz.vo.RoleInfoVo">
+        update roleinfo set rolename=#{roleInfo.rolename} where roleid=#{roleInfo.roleid}
+    </update>
+
+    <!--真删除-->
+    <delete id="deleteRoleInfo" parameterType="com.mrz.vo.UserIdVo">
+        delete from user_role where userid=#{userid}
+    </delete>
+
+    <insert id="insertRole" parameterType="com.mrz.vo.UserIdVo">
+        insert into user_role(userid,roleid) values
+        <foreach collection="roles" item="roleid" index="index" separator=",">
+            (#{userid},#{roleid})
+        </foreach>
+    </insert>
+</mapper>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="GB18030">
+<head>
+    <meta http-equiv="Content-Type" content="multipart/form-data;charset=utf-8">
+    <meta charset="GB18030">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <script src="jquery/jquery-2.1.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="script/docs.min.js"></script>
+
+    <style type="text/css">
+         li {
+            list-style-type: none;
+            cursor:pointer;
+        }
+       /* table tbody tr:nth-child(odd){background:#F4F4F4;}
+        table tbody td:nth-child(even){color:#C00;}*/
+        #div_1{
+              width: 20%;
+              float: left;
+              margin-left: 50px;
+              background-color: #d43f3a;
+          }
+         #div_1_left{
+             width: 30%;
+             height: 40px;
+             float: left;
+             margin: 50px 0 50px 30px;
+             background-color: #00B83F;
+         }
+         #div_1_right{
+             width: 30%;
+             height: 150px;
+             float: right;
+             margin: 30px 30px 30px 0;
+             background-color: #2aabd2;
+         }
+         #div_2{
+             width: 20%;
+             float: left;
+             margin-left: 50px;
+             background-color: #00B83F;
+         }
+         #div_2_left{
+             width: 20%;
+             height: 60px;
+             float: left;
+             margin: 50px 0 50px 30px;
+             background-color: #d43f3a;
+         }
+         #div_2_right{
+             width: 50%;
+             height: 150px;
+             float: right;
+             margin: 30px 30px 30px 0;
+             background-color: #2aabd2;
+         }
+         #div_3{
+             width: 20%;
+             float: left;
+             margin-left: 50px;
+             background-color: #2aabd2;
+         }
+         #div_3_left{
+             width: 20%;
+             height: 60px;
+             float: left;
+             margin: 50px 0 50px 30px;
+             background-color: #00B83F;
+         }
+         #div_3_right{
+             width: 50%;
+             height: 150px;
+             float: right;
+             margin: 30px 30px 30px 0;
+             background-color: #d43f3a;
+         }
+    </style>
+<body>
+    <!--<div class="btn-group" role="group" id="dis" aria-label="" style="width: 510px;float: left">
+        <button class="btn btn-info" style="margin-left:20px;float: left" >控制面板</button>
+
+        <button class="btn btn-info" style="margin-left:20px;float: left" >权限管理</button>
+
+        <button class="btn btn-info" style="margin-left:20px;float: left" >业务审核</button>
+        <button class="btn btn-info" style="margin-left:20px;float: left" >业务管理</button>
+        <button class="btn btn-info" style="margin-left:20px;float: right">参数管理</button>
+        &lt;!&ndash;<div class="list-group" style="display: block; float: left;margin-left: 25px" >
+                   <ul class="list list-inline">
+                       <li><input type="checkbox"><button>用户维护</button></li>
+                       <li><input type="checkbox"><button>用户维护</button></li>
+                       <li><input type="checkbox"><button>用户维护</button></li>
+                   </ul>
+               </div>&ndash;&gt;
+        &lt;!&ndash;<div class="list-group" style="display: block; float: left;margin-left: 25px" >
+            <ul class="list list-inline">
+                <li><input type="checkbox"><button>用户维护</button></li>
+                <li><input type="checkbox"><button>用户维护</button></li>
+                <li><input type="checkbox"><button>用户维护</button></li>
+            </ul>
+        </div>&ndash;&gt;
+    </div><br/><br/>-->
+    <!--<div>
+        <div style="width: 30%;background-color: #00B83F;float: left" id="asp"><span id="span">mosdah</span></div>
+        <div style="background-color: #d43f3a;width: 66%;float: right;height: 60px"></div>
+    </div>-->
+
+    <div id="div_1">
+        <div id="div_1_left"></div>
+        <div id="div_1_right"></div>
+    </div>
+    <div id="div_2">
+        <div id="div_2_left"></div>
+        <div id="div_2_right"></div>
+    </div>
+    <div id="div_3">
+        <div id="div_3_left"></div>
+        <div id="div_3_right"></div>
+    </div>
+
+</body>
+<script>
+        $("#dis button").click(function () {
+            $("#asp").append("<span>"+积分+"</span>");
+            //$("#span").html($(this).html());
+        })
+</script>
+</html>

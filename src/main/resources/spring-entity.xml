@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+        <bean name="userInfo" class="com.mrz.pojo.UserInfo">
+            <property name="username" value="ls"></property>
+            <property name="password" value="123"></property>
+        </bean>
+    <bean name="hs" class="com.mrz.pojo.UserInfo">
+        <property name="name" value="黄*"></property>
+        <property name="username" value="huangS"></property>
+        <property name="password" value="123456"></property>
+        <property name="email" value="huangs@163.com"></property>
+        <property name="status" value="1"></property>
+    </bean>
+</beans>
